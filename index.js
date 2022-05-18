@@ -3,6 +3,8 @@ const PORT = 5000;
 
 const app = express();
 
+app.use(express.urlencoded({ extended: true }));
+
 app.get('/', (req, res) => {
   res.send(`
   <div>
@@ -17,16 +19,8 @@ app.get('/', (req, res) => {
 });
 
 app.post('/', (req, res) => {
-  req.on('data', (data) => {
-    const parsed = data.toString('utf8').split('&');
-    const formData = {};
-    for (let pair of parsed) {
-      const [key, value] = pair.split('=');
-      formData[key] = value;
-    }
-    console.log(formData);
-  });
-  res.send('Account created! ');
+  console.log(req.body);
+  res.send('Account created!');
 });
 
 app.listen(PORT, () => {
