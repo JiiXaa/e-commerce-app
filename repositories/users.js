@@ -1,3 +1,4 @@
+const { create } = require('domain');
 const fs = require('fs');
 
 class UsersRepository {
@@ -18,6 +19,34 @@ class UsersRepository {
       fs.writeFileSync(this.filename, '[]');
     }
   }
+
+  async getAll() {
+    // Open the file called this.filename and parse the contents
+    return JSON.parse(
+      await fs.promises.readFile(this.filename, {
+        encoding: 'utf8',
+      })
+    );
+  }
+
+  async create(attrs) {
+    // every time want to make changes to the list of users, we need to load up contents of users.json
+    const records = await this.getAll();
+    records.push(attrs);
+    // write the updated 'records' array back to this.filename
+    // fsPromises.writeFile() writes data to a file, replacing the file if it already exists.
+    await fs.promises.writeFile(this.filename, JSON.stringify(records));
+  }
 }
 
-const repo = new UsersRepository('users.json');
+const test = async () => {
+  const repo = new UsersRepository('users.json');
+
+  repo.create({ email: 'tests@mail.com', password: 'password' });
+
+  const users = await repo.getAll();
+
+  console.log(users);
+};
+
+test();
