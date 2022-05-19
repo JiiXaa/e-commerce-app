@@ -33,9 +33,17 @@ class UsersRepository {
     // every time want to make changes to the list of users, we need to load up contents of users.json
     const records = await this.getAll();
     records.push(attrs);
+
+    await this.writeAll(records);
+  }
+
+  async writeAll(records) {
     // write the updated 'records' array back to this.filename
     // fsPromises.writeFile() writes data to a file, replacing the file if it already exists.
-    await fs.promises.writeFile(this.filename, JSON.stringify(records));
+    await fs.promises.writeFile(
+      this.filename,
+      JSON.stringify(records, null, 2) // second and third argument is a good trick for a automatic json formatting (null/ we could use custom formatter, 2 means level of indentation)
+    );
   }
 }
 
