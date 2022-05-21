@@ -1,5 +1,5 @@
-const { create } = require('domain');
 const fs = require('fs');
+const crypto = require('crypto');
 
 class UsersRepository {
   constructor(filename) {
@@ -30,6 +30,8 @@ class UsersRepository {
   }
 
   async create(attrs) {
+    attrs.id = this.randomId();
+
     // every time want to make changes to the list of users, we need to load up contents of users.json
     const records = await this.getAll();
     records.push(attrs);
@@ -45,12 +47,17 @@ class UsersRepository {
       JSON.stringify(records, null, 2) // second and third argument is a good trick for a automatic json formatting (null/ we could use custom formatter, 2 means level of indentation)
     );
   }
+
+  randomId() {
+    // creating 4 byte size random ID with use of nodeJS crypto module.
+    return crypto.pseudoRandomBytes(4).toString('hex');
+  }
 }
 
 const test = async () => {
   const repo = new UsersRepository('users.json');
 
-  repo.create({ email: 'tests@mail.com', password: 'password' });
+  await repo.create({ email: 'tests@mail.com', password: 'password' });
 
   const users = await repo.getAll();
 

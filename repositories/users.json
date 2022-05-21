@@ -1,22 +1,12 @@
 [
   {
     "email": "tests@mail.com",
-    "password": "password"
+    "password": "password",
+    "id": "fcb01697"
   },
   {
     "email": "tests@mail.com",
-    "password": "password"
-  },
-  {
-    "email": "tests@mail.com",
-    "password": "password"
-  },
-  {
-    "email": "tests@mail.com",
-    "password": "password"
-  },
-  {
-    "email": "tests@mail.com",
-    "password": "password"
+    "password": "password",
+    "id": "c6149872"
   }
 ]
