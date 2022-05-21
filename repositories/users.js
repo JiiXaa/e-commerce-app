@@ -52,16 +52,22 @@ class UsersRepository {
     // creating 4 byte size random ID with use of nodeJS crypto module.
     return crypto.pseudoRandomBytes(4).toString('hex');
   }
+
+  async getOne(id) {
+    const records = await this.getAll();
+    return records.find((record) => record.id === id);
+  }
 }
 
 const test = async () => {
   const repo = new UsersRepository('users.json');
 
-  await repo.create({ email: 'tests@mail.com', password: 'password' });
+  // await repo.create({ email: 'tests@mail.com', password: 'password' });
+  // const users = await repo.getAll();
+  // console.log(users);
 
-  const users = await repo.getAll();
-
-  console.log(users);
+  const user = await repo.getOne('c6149872');
+  console.log(user);
 };
 
 test();
