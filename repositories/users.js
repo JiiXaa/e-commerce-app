@@ -63,6 +63,18 @@ class UsersRepository {
     const filteredRecords = records.filter((record) => record.id !== id);
     await this.writeAll(filteredRecords);
   }
+
+  async update(id, attrs) {
+    const records = await this.getAll();
+    const record = records.find((record) => record.id === id);
+
+    if (!record) {
+      throw new Error(`Record with id ${id} not found`);
+    }
+    // The Object.assign() method copies all enumerable own properties from one or more source objects to a target object. It returns the modified target object.
+    Object.assign(record, attrs);
+    await this.writeAll(records);
+  }
 }
 
 const test = async () => {
@@ -75,7 +87,9 @@ const test = async () => {
   // const user = await repo.getOne('c6149872');
   // console.log(user);
 
-  await repo.delete('fcb016971');
+  // await repo.delete('fcb016971');
+
+  await repo.update('fcb016973', { password: 'newPassword' });
 };
 
 test();
