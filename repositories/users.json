@@ -5,8 +5,13 @@
     "id": "fcb01697"
   },
   {
-    "email": "tests@mail.com",
+    "email": "tests2@mail.com",
     "password": "newPassword",
     "id": "fcb016973"
+  },
+  {
+    "email": "tests3@mail.com",
+    "password": "newPassword",
+    "id": "zzz016973"
   }
 ]
