@@ -95,23 +95,11 @@ class UsersRepository {
   }
 }
 
-const test = async () => {
-  const repo = new UsersRepository('users.json');
-
-  // await repo.create({ email: 'tests@mail.com', password: 'password' });
-  // const users = await repo.getAll();
-  // console.log(users);
-
-  // const user = await repo.getOne('c6149872');
-  // console.log(user);
-
-  // await repo.delete('fcb016971');
-
-  // await repo.update('fcb016973', { password: 'newPassword' });
-
-  const user = await repo.getOneBy({ email: 'tests@mail.com', id: 'fcb01697' });
-
-  console.log(user);
-};
-
-test();
+// export instance of a class, no need to create it for different files.
+// Just import it:
+// const repo = require('./users);
+// and use it:
+// repo.getAll();
+// repo.getOne();
+// etc...
+module.exports = new UsersRepository('users.json');
