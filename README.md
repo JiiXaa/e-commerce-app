@@ -1,5 +1,7 @@
 # E-Commerce Application
 
+Made purely with Javascript and NodeJS for practice purposes
+
 ## Administrator Access
 
 Administrator has access to the dashboard panel

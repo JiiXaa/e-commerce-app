@@ -37,6 +37,8 @@ class UsersRepository {
     records.push(attrs);
 
     await this.writeAll(records);
+
+    return attrs;
   }
 
   async writeAll(records) {
