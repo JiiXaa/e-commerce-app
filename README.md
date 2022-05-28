@@ -12,3 +12,10 @@ Administrator has access to the dashboard panel
 ## Database
 
 Data is stored with the fs (file system) module for an educational purpose (will migrate to MongoDB in future)
+
+## Authentication
+
+Auth done with use of Crypto, a NodeJs's module
+
+- crypto.randomBytes (generating salt)
+- crypto.scrypt (hashing password process)
