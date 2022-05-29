@@ -56,6 +56,15 @@ class UsersRepository {
     return record;
   }
 
+  async comparePasswords(saved, supplied) {
+    // saved = password save in our database. 'hashed.salt'
+    // supplied = password given to us by a user trying sing in
+    const [hashed, salt] = saved.split('.');
+    const hashedSuppliedBuffer = await scrypt(supplied, salt, 64);
+
+    return hashed === hashedSuppliedBuffer.toString('hex');
+  }
+
   async writeAll(records) {
     // write the updated 'records' array back to this.filename
     // fsPromises.writeFile() writes data to a file, replacing the file if it already exists.

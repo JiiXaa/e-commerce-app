@@ -1,0 +1,30 @@
+[
+  {
+    "email": "test@mail.com"
+  },
+  {
+    "email": "tomcio@email.com",
+    "password": "tom",
+    "id": "88d6d010"
+  },
+  {
+    "email": "test100@test.com",
+    "password": "secret",
+    "id": "7a090059"
+  },
+  {
+    "email": "salttest@test.com",
+    "password": "bf7d49f618306eae5275087d28ba24eb0ceb8eca7baa707db3ef500be2d7818ecadb1c43f3ff328f651c73f603e9cf2c3670805aa5d43074f4d84045929fe3f4.5ed62540b7df553b",
+    "id": "445d8f83"
+  },
+  {
+    "email": "dsa@mail.com",
+    "password": "c8a4c8623b83bfa18d0187b357078761505a4fcd26a8aa7d806233e9e188b667772fd64dadcd01a36e3a1e04c7cdce7a7739f76b202d707390705d32548063c4.26c93ca8551e0842",
+    "id": "f38a19c2"
+  },
+  {
+    "email": "salttest2@test.com",
+    "password": "772f7c99a8cea3ae3aae1dae43aec4330cba057a88760c17443e830d500aa2be089ff51e0f625ac3571b37b060aea2cfcb5b773b89c4ff2ad35beeb5613acdef.7c83e3daeac4f94c",
+    "id": "09d2c372"
+  }
+]
