@@ -4,6 +4,7 @@ const { check, validationResult } = require('express-validator');
 const usersRepo = require('../../repositories/users');
 const signupTemplate = require('../../views/admin/auth/signup');
 const signinTemplate = require('../../views/admin/auth/signin');
+const res = require('express/lib/response');
 
 const router = express.Router();
 
@@ -14,9 +15,30 @@ router.get('/signup', (req, res) => {
 router.post(
   '/signup',
   [
-    check('email').trim().normalizeEmail().isEmail(),
-    check('password').trim().isLength({ min: 6, max: 20 }),
-    check('passwordConfirmation').trim().isLength({ min: 6, max: 20 }),
+    check('email')
+      .trim()
+      .normalizeEmail()
+      .isEmail()
+      .withMessage('Must be a valid email')
+      .custom(async (email) => {
+        const existingUser = await usersRepo.getOneBy({ email });
+        if (existingUser) {
+          throw new Error('Email in use!');
+        }
+      }),
+    check('password')
+      .trim()
+      .isLength({ min: 6, max: 20 })
+      .withMessage('Must be between 6 and 20 characters'),
+    check('passwordConfirmation')
+      .trim()
+      .isLength({ min: 6, max: 20 })
+      .withMessage('Must be between 6 and 20 characters')
+      .custom((passwordConfirmation, { req }) => {
+        if (passwordConfirmation !== req.body.password) {
+          throw new Error('Passwords must match!');
+        }
+      }),
   ],
   async (req, res) => {
     // check() passes information to the req
@@ -24,15 +46,6 @@ router.post(
     console.log(errors);
 
     const { email, password, passwordConfirmation } = req.body;
-
-    const existingUser = await usersRepo.getOneBy({ email });
-    if (existingUser) {
-      return res.send('Email in use');
-    }
-
-    if (password !== passwordConfirmation) {
-      return res.send('Password must match!');
-    }
 
     // Create a user in our user repo to represent this person
     // / create method returns object with user email, password and create an id.
