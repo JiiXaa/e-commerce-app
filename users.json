@@ -26,5 +26,15 @@
     "email": "salttest2@test.com",
     "password": "772f7c99a8cea3ae3aae1dae43aec4330cba057a88760c17443e830d500aa2be089ff51e0f625ac3571b37b060aea2cfcb5b773b89c4ff2ad35beeb5613acdef.7c83e3daeac4f94c",
     "id": "09d2c372"
+  },
+  {
+    "email": "secret@gmail.com",
+    "password": "84d6eeb36f822234a544aeecf08b2b43cbe2a4e70f4f66804a3294ce5830087b32396428dc0ab50ac13c7ec4eadd54e29d66dcb321fdaa390e76e3ffe7477ed2.191873cf4976fbde",
+    "id": "504f1603"
+  },
+  {
+    "email": "salttest100@test.com",
+    "password": "9a52d133e1bb72ad56d45cda964bbc282280d89a6894f226ba459142de0ca32c41b7fddff45f5661b4d9b42d4599c66a721b33037d2db8e295673c82c84b12a2.bda504e977ce26c9",
+    "id": "c77e951b"
   }
 ]

@@ -6,13 +6,13 @@ module.exports = {
     .trim()
     .normalizeEmail()
     .isEmail()
-    .withMessage('Must be a valid email')
     .custom(async (email) => {
       const existingUser = await usersRepo.getOneBy({ email });
       if (existingUser) {
-        throw new Error('Email in use!');
+        throw new Error(`${email} is already taken.`);
       }
-    }),
+    })
+    .withMessage('Must be a valid email'),
   requirePassword: check('password')
     .trim()
     .isLength({ min: 6, max: 20 })
@@ -24,6 +24,8 @@ module.exports = {
     .custom((passwordConfirmation, { req }) => {
       if (passwordConfirmation !== req.body.password) {
         throw new Error('Passwords must match!');
+      } else {
+        return true;
       }
     }),
 };
