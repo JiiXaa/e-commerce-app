@@ -19,3 +19,9 @@ Auth done with use of Crypto, a NodeJs's module
 
 - crypto.randomBytes (generating salt)
 - crypto.scrypt (hashing password process)
+
+## Server-side validation
+
+express-validator used for server side validation
+
+https://express-validator.github.io/docs/
