@@ -11,8 +11,7 @@ module.exports = {
       if (existingUser) {
         throw new Error(`${email} is already taken.`);
       }
-    })
-    .withMessage('Must be a valid email'),
+    }),
   requirePassword: check('password')
     .trim()
     .isLength({ min: 6, max: 20 })

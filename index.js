@@ -6,6 +6,8 @@ const PORT = 5000;
 
 const app = express();
 
+// finds the public folder and make it available from the outside
+app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cookieSession({
