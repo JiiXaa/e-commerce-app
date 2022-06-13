@@ -25,3 +25,15 @@ Auth done with use of Crypto, a NodeJs's module
 express-validator used for server side validation
 
 https://express-validator.github.io/docs/
+
+## Uploading files
+
+Multer is a node.js middleware for handling multipart/form-data, which is primarily used for uploading files. It is written on top of busboy for maximum efficiency.
+
+NOTE: Multer will not process any form which is not multipart (multipart/form-data).
+
+used MemoryStorage.
+The memory storage engine stores the files in memory as Buffer objects. It doesn't have any options.
+
+const storage = multer.memoryStorage()
+const upload = multer({ storage: storage })
