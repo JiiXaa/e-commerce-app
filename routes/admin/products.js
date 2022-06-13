@@ -19,10 +19,15 @@ router.get('/admin/products/new', (req, res) => {
 
 router.post(
   '/admin/products/new',
+  upload.single('image'), // it looks for input's name attribute in a form. It has to be on top of validators as it gets access to req.body instead of express.urlencoded
   [requireTitle, requirePrice],
-  upload.single('image'), // it looks for input's name attribute in a form.
   async (req, res) => {
     const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.send(productsNewTemplate({ errors }));
+    }
+
     // logs file information
     // console.log(req.file);
 
