@@ -35,7 +35,7 @@ router.post(
     // / we creating userId and assign param with user.id created by UsersRepo.create()
     req.session.userId = user.id;
 
-    res.send('Account created!');
+    res.redirect('/admin/products');
   }
 );
 
@@ -60,7 +60,7 @@ router.post(
 
     req.session.userId = user.id;
 
-    res.send('You are signed in!');
+    res.redirect('/admin/products');
   }
 );
 
