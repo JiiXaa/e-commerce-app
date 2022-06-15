@@ -40,6 +40,7 @@ router.post(
 );
 
 router.get('/signout', (req, res) => {
+  // clears user cookie
   req.session = null;
   res.send('You are logged out');
 });
@@ -58,6 +59,7 @@ router.post(
 
     const user = await usersRepo.getOneBy({ email });
 
+    // req.session is an object stored in users cookie
     req.session.userId = user.id;
 
     res.redirect('/admin/products');
