@@ -1,5 +1,7 @@
 const express = require('express');
 const cartsRepo = require('../repositories/carts');
+const productsRepo = require('../repositories/products');
+const cartShowTemplate = require('../views/carts/show');
 
 const router = express.Router();
 
@@ -39,6 +41,26 @@ router.post('/cart/products', async (req, res) => {
 });
 
 // Receive a GET request to show all items in cart
+router.get('/cart', async (req, res) => {
+  // cart is being created by adding first item, in case if cart is not yet created and user visit this route without assigned one, we redirect
+  if (!req.session.cartId) {
+    return res.redirect('/');
+  }
+
+  console.log(req.session.cartId);
+
+  const cart = await cartsRepo.getOne(req.session.cartId);
+
+  for (let item of cart.items) {
+    const product = await productsRepo.getOne(item.id);
+    // we modify cart.items but not saving it to the repo, just send with cartShowTemplate
+    item.product = product;
+  }
+
+  console.log(cart.items);
+
+  res.send(cartShowTemplate({ items: cart.items }));
+});
 
 // Receive a POST request to delete an item from a cart
 
