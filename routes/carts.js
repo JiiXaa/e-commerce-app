@@ -36,7 +36,7 @@ router.post('/cart/products', async (req, res) => {
     items: cart.items,
   });
 
-  res.send('Product added to your cart');
+  res.redirect('/cart');
 });
 
 // Receive a GET request to show all items in cart
@@ -61,6 +61,12 @@ router.get('/cart', async (req, res) => {
 router.post('/cart/products/delete', async (req, res) => {
   const { itemId } = req.body;
   const cart = await cartsRepo.getOne(req.session.cartId);
+
+  const items = cart.items.filter((item) => item.id !== itemId);
+
+  await cartsRepo.update(req.session.cartId, { items });
+
+  res.redirect('/cart');
 });
 
 module.exports = router;
