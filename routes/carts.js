@@ -18,7 +18,6 @@ router.post('/cart/products', async (req, res) => {
     // User have a cart already, Let's get it from the repository
     cart = await cartsRepo.getOne(req.session.cartId);
   }
-  console.log(cart);
   // Either increment quantity for existing product
   // OR add new product to items array
   const existingProduct = cart.items.find(
@@ -47,8 +46,6 @@ router.get('/cart', async (req, res) => {
     return res.redirect('/');
   }
 
-  console.log(req.session.cartId);
-
   const cart = await cartsRepo.getOne(req.session.cartId);
 
   for (let item of cart.items) {
@@ -57,11 +54,13 @@ router.get('/cart', async (req, res) => {
     item.product = product;
   }
 
-  console.log(cart.items);
-
   res.send(cartShowTemplate({ items: cart.items }));
 });
 
 // Receive a POST request to delete an item from a cart
+router.post('/cart/products/delete', async (req, res) => {
+  const { itemId } = req.body;
+  const cart = await cartsRepo.getOne(req.session.cartId);
+});
 
 module.exports = router;

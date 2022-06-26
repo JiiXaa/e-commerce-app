@@ -19,20 +19,17 @@ module.exports = ({ content }) => {
               <div>
                 <ul class="social">
                   <li>
-                    <a href=""><i class="fa fa-phone"></i>+1 555 987 6543</a>
+                    <a href=""><i class="fa fa-phone"></i> 7592362685</a>
                   </li>
                   <li>
-                    <a href=""><i class="fa fa-envelope"></i> shop@myshop.com</a>
+                    <a href=""><i class="fa fa-envelope"></i> anythingfx@gmail.com</a>
                   </li>
                 </ul>
               </div>
               <div>
                 <ul class="social">
-                  <li><a href=""><i class="fab fa-facebook"></i></a></li>
-                  <li><a href=""><i class="fab fa-twitter"></i></a></li>
-                  <li><a href=""><i class="fab fa-linkedin"></i></a></li>
-                  <li><a href=""><i class="fab fa-dribbble"></i></a></li>
-                  <li><a href=""><i class="fab fa-google-plus"></i></a></li>
+                <li><a href="https://github.com/JiiXaa" target="_blank"><i class="fab fa-github"></i></a></li>
+                <li><a href="https://www.linkedin.com/in/tomasz-ostroga/" target="_blank"><i class="fab fa-linkedin"></i></a></li>
                 </ul>
               </div>
             </div>
