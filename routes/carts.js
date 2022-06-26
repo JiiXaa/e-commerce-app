@@ -20,6 +20,8 @@ router.post('/cart/products', async (req, res) => {
   }
   // Either increment quantity for existing product
   // OR add new product to items array
+
+  console.log(cart);
   const existingProduct = cart.items.find(
     (item) => item.id === req.body.productId
   );
@@ -62,9 +64,23 @@ router.post('/cart/products/delete', async (req, res) => {
   const { itemId } = req.body;
   const cart = await cartsRepo.getOne(req.session.cartId);
 
-  const items = cart.items.filter((item) => item.id !== itemId);
+  console.log('cart: ', cart);
 
-  await cartsRepo.update(req.session.cartId, { items });
+  // Find item in cart
+  const item = cart.items.find((item) => item.id === itemId);
+
+  // Reduce by 1
+  --item.quantity;
+
+  // Mutate cart
+  if (!item.quantity) {
+    // Find item index
+    const itemIndex = cart.items.indexOf(item);
+    // Remove item
+    cart.items.splice(itemIndex, 1);
+  }
+
+  await cartsRepo.update(req.session.cartId, { items: cart.items });
 
   res.redirect('/cart');
 });
